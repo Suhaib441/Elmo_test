@@ -44,12 +44,14 @@ h=e.sents2elmo(sents) #la transformation en vecteur
 
 
 def ecludienne(vector1, vector2):
-    ''' on utilise scipy pour calcuer la distance ecludienne. '''
+    ''' on utilise scipy pour calculer la distance ecludienne. '''
     if vector1.shape == vector2.shape: 
         a=vector1.flatten() #transformation en vecteurs de 1D au lieu de 2D 
         b=vector1.flatten()
         dist = distance.euclidean(a, b) # distance 
-        
+        #SI on veut utiliser NUmpy
+            #dist = [(un - deux)**2 for un, deux in zip(vector1, vector2)]
+            #dist = math.sqrt(sum(dist))
         #dist = [(un - deux)**2 for un, deux in zip(vector1, vector2)]
         #dist = math.sqrt(sum(dist))
     else: 
@@ -58,7 +60,7 @@ def ecludienne(vector1, vector2):
         long2=len(vector2)
         diff=abs(long-long2) #la difference de taille entre les 2 vecteurs 
         if vector1.shape < vector2.shape:
-            array_diff=np.zeros([diff,vector1.shape[1]])# m c'est les la difference en arrays 
+            array_diff=np.zeros([diff,vector1.shape[1]])# array_diff c'est le vecteur de la difference en arrays 
             vector1=np.vstack((vector1, array_diff)) #ajout des rows de 0 pour avoir la même taille 
 
             a=vector1.flatten()
